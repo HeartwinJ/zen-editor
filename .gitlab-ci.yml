@@ -1,0 +1,17 @@
+image: node:latest
+cache:
+  paths:
+    - node_modules/
+pages:
+  script:
+    - npm install
+    - npm run build
+    - rm -rf public
+    - mv dist public
+    - mv .public public
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - public
+  only:
+    - master
