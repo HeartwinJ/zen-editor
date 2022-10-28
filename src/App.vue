@@ -21,10 +21,14 @@ onMounted(() => {
     contentDiv.value.innerText = data.content;
   }, 100);
 });
+
+function wordCount() {
+  return data.content.split(/\S+/).length - 1;
+}
 </script>
 
 <template>
-  <div class="flex h-screen w-screen justify-center bg-stone-900">
+  <div class="relative flex h-screen w-screen justify-center bg-stone-900">
     <div class="flex h-full w-full max-w-2xl flex-col gap-4 py-4">
       <input
         type="text"
@@ -39,6 +43,12 @@ onMounted(() => {
         contenteditable
         @input="(e: any) => (data.content = e.target.innerText)"
       ></div>
+    </div>
+    <div class="text-stone-400">
+      <div class="absolute top-4 right-4 flex flex-col items-end">
+        <div class="text-sm">Word Count:</div>
+        <div class="text-lg">{{ wordCount() }}</div>
+      </div>
     </div>
   </div>
 </template>
